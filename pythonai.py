@@ -10,23 +10,20 @@ search_index = os.environ["SEARCH_INDEX"]
 search_key = os.environ["AZURE_SEARCH_API_KEY"]
 openai_api_version = os.environ["API_VERSION"]
 
+'''
 # Enable logging
 logger = logging.getLogger('azure')
 logger.setLevel(logging.DEBUG)
-
 # Create console handler and set level to debug
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
-
 # Create formatter
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
 # Add formatter to ch
 ch.setFormatter(formatter)
-
 # Add ch to logger
 logger.addHandler(ch)
-
+'''
 # Get the Entra ID token provider
 token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
 
@@ -36,7 +33,6 @@ client = AzureOpenAI(
     api_version=openai_api_version,
 )
 
-      
 completion = client.chat.completions.create(
     model=deployment,
     messages=[
